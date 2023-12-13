@@ -54,7 +54,6 @@ internal class Game
             if (DisplayContent.IsGameOver())
             {
                 _obstacles.ReloadBackground();
-                Thread.Sleep(1000);
                 while (!DisplayContent.startPressed)
                 {
                     // TODO: Anzeigen: "press spacebar to restart"
