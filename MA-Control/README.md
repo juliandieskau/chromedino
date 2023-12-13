@@ -4,7 +4,7 @@
 ## TODO
 - [x] Das Spiel soll mit der Leer-Taste starten.
 - [x] Nach 'Game Over' soll das Spiel mit der Leer-Taste neu gestartet werden.
-- [ ] Bei 'Game Over' soll der Dino rot gezeichnet werden. Beim Neustart des Spiels soll er wieder grün sein.
+- [x] Bei 'Game Over' soll der Dino rot gezeichnet werden. Beim Neustart des Spiels soll er wieder grün sein.
 - [ ] Sekundenzähler hinzufügen
 - [ ] High score hinzufügen
 - [ ] Selber eine Verbesserung im Programm machen
@@ -12,3 +12,4 @@
 	- [ ] Geschwindigkeit der Hindernisse über Zeit schneller?
 	- [X] Sprunghöhe nicht linear sondern mit gravity und acceleration
 	- [ ] neu generierte Map weiter hinten starten
+	- [ ] wenn man während collision springt ist game over false, sobald man oberhalb des obstacles ist

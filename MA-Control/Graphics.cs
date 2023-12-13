@@ -179,6 +179,58 @@ public class Graphics
     }
 
     /// <summary>
+    /// Gets the object for drawing the dinosaur. But in red.
+    /// </summary>
+    /// <returns>Object for drawing the red dinosaur.</returns>
+    private static DrawableObstacleModel GetRedDino()
+    {
+        // Create dinosaur
+        Point[] dinoEdges =
+        {
+            new(23, 19 - _dino.CurrentHeight),
+            new(23, 23 - _dino.CurrentHeight),
+            new(22, 23 - _dino.CurrentHeight),
+            new(22, 25 - _dino.CurrentHeight),
+            new(21, 25 - _dino.CurrentHeight),
+            new(21, 23 - _dino.CurrentHeight),
+            new(20, 23 - _dino.CurrentHeight),
+            new(20, 26 - _dino.CurrentHeight),
+            new(21, 26 - _dino.CurrentHeight),
+            new(21, 27 - _dino.CurrentHeight),
+            new(22, 27 - _dino.CurrentHeight),
+            new(22, 29 - _dino.CurrentHeight),
+            new(24, 29 - _dino.CurrentHeight),
+            new(24, 28 - _dino.CurrentHeight),
+            new(23, 28 - _dino.CurrentHeight),
+            new(23, 27 - _dino.CurrentHeight),
+            new(24, 27 - _dino.CurrentHeight),
+            new(24, 26 - _dino.CurrentHeight),
+            new(25, 26 - _dino.CurrentHeight),
+            new(25, 24 - _dino.CurrentHeight),
+            new(27, 24 - _dino.CurrentHeight),
+            new(27, 23 - _dino.CurrentHeight),
+            new(25, 23 - _dino.CurrentHeight),
+            new(25, 21 - _dino.CurrentHeight),
+            new(27, 21 - _dino.CurrentHeight),
+            new(27, 19 - _dino.CurrentHeight),
+            new(25, 19 - _dino.CurrentHeight),
+            new(25, 20 - _dino.CurrentHeight),
+            new(24, 20 - _dino.CurrentHeight),
+            new(24, 19 - _dino.CurrentHeight)
+        };
+
+        var redPen = new Pen(Color.Red, 1);
+
+        var dino = new DrawableObstacleModel
+        {
+            Edges = dinoEdges,
+            Pen = redPen
+        };
+
+        return dino;
+    }
+
+    /// <summary>
     /// Draws the obstacles according to the content of the collection of obstacles and
     /// draws the dinosaur according to the current Dino's height.
     /// </summary>
@@ -204,8 +256,17 @@ public class Graphics
                     }
 
                     // Draw dinosaur.
-                    var dino = GetDino();
-                    graphics.DrawPolygon(dino.Pen, dino.Edges);
+                    if (DisplayContent.IsGameOver())
+                    {
+                        var dino = GetRedDino();
+                        graphics.DrawPolygon(dino.Pen, dino.Edges);
+                    } 
+                    else
+                    {
+                        var dino = GetDino();
+                        graphics.DrawPolygon(dino.Pen, dino.Edges);
+                    }
+                    
 
                     Point[] playerHitbox =
                     {
@@ -239,8 +300,8 @@ public class Graphics
                     // Send to display
                     controlService.SendBitmap(bitmap);
 
-                    // Break
-                    Thread.Sleep(100);
+                    // Sleep
+                    Thread.Sleep(1);
                 }
             }
         }
