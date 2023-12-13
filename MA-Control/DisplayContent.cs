@@ -129,27 +129,47 @@ public class DisplayContent
 
     #region Private Methods
 
+    private double positionY = 0.0;
+    private double velocityY = 0.0;
+    private const double gravity = 32.0;
+
     /// <summary>
     /// Draws the jump of the Dino.
     /// </summary>
     private void DrawJump()
     {
         _timeSinceLastJump = DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timestamp;
-
+        /*
         double tempValue = 0;
 
+        
         if (_timeSinceLastJump < 1000)
         {
+            // range: 0.0->16.0 Höhe, in 1s wächst linear
             tempValue = 32.0 * (_timeSinceLastJump / 2000.0);
         }
         else if (_timeSinceLastJump >= 1000)
         {
+            // 16.0->0.0 Höhe, in 1s
             tempValue = 16 - 32.0 * ((_timeSinceLastJump - 1000) / 2000.0);
+        }*/
+
+        if (_timeSinceLastJump < 200)
+        {
+            velocityY = 32.0;
+        }
+        if (_timeSinceLastJump > 0)
+        {
+            positionY += velocityY * (_timeSinceLastJump / 2000.0);
+            velocityY -= gravity * (_timeSinceLastJump / 2000.0);
         }
 
-        var yValue = (int)tempValue;
+        var yValue = (int)positionY;
         if (yValue < 0)
         {
+            positionY = 0.0;
+            velocityY = 0.0;
+
             yValue = 0;
         }
 
