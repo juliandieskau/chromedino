@@ -125,6 +125,10 @@ public class DisplayContent
         {
             Console.Write(".");
         }
+        // The space bar is pressed.
+        else if (pressedKey == Keys.Space) {
+            
+        }
     }
 
     #endregion

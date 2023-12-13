@@ -44,6 +44,7 @@ internal class Game
             {
                 _obstacles.ReloadBackground();
                 Thread.Sleep(1000);
+
             }
 
             _obstacles.UpdateBackground();

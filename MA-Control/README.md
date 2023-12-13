@@ -11,3 +11,4 @@
 	- [x] Hitboxen sind 15 Pixel hinter dem Angezeigten Obstacle (rechte seite dino bis linke seite obstacle)
 	- [ ] Geschwindigkeit der Hindernisse über Zeit schneller?
 	- [X] Sprunghöhe nicht linear sondern mit gravity und acceleration
+	- [ ] neu generierte Map weiter hinten starten
