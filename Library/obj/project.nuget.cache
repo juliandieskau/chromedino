@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "dgSpecHash": "YjZbJaIquHp4cmHFHnVzIg4p+oS+vuLvP+nsebZENfLu3IS9MuHELluaN4eGMQZU8YTcpAZu2b6XGQTCLk4gvA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HH-SoSo-2\\Desktop\\MyFolder\\MA-Control\\MA-Control\\Library\\Library.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\log4net\\2.0.15\\log4net.2.0.15.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.5.0\\system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
+    "C:\\Users\\HH-SoSo-2\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Das Paket \"System.Drawing.Common\" 4.7.0 weist eine bekannte Kritisch Schweregrad-Sicherheitsanfälligkeit auf, https://github.com/advisories/GHSA-rxg9-xrhp-64gj.",
+      "libraryId": "System.Drawing.Common",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}
