@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Drawing;
 using System.Reflection;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace MA_Control;
 
@@ -91,8 +92,11 @@ public class Graphics
     /// <returns></returns>
     private static bool CheckCollision(Point[] playerHitbox)
     {
-        var hitabox = new Rectangle(10, _dino.CurrentHeight + 26, 3, 3);
 
+        // Rectangle(linksoben.X, linksoben.Y, breite nach rechts, höhe nach unten)
+        var hitboxTop = new Rectangle(23, -_dino.CurrentHeight + 19, 4, 5);
+        var hitboxBottom = new Rectangle(20, -_dino.CurrentHeight + 23, 4, 6);
+         
         foreach (var obstacle in _obstacles)
         {
             // If the obstacle is not where the dino is, then do not check for collision.
@@ -113,7 +117,7 @@ public class Graphics
 
             var obstacleHitbox = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
 
-            if (hitabox.IntersectsWith(obstacleHitbox))
+            if (hitboxTop.IntersectsWith(obstacleHitbox) || hitboxBottom.IntersectsWith(obstacleHitbox))
             {
                 return true;
             }
@@ -206,10 +210,20 @@ public class Graphics
                     Point[] playerHitbox =
                     {
                         new(22, 29), // bottom left
-                        new(24, 29), // bottom right
-                        new(20, 26), // top right
-                        new(25, 26) // top left
+                        new(20, 26), // top left
+                        new(25, 26), // top right
+                        new(24, 29) // bottom right
                     };
+
+                    // Draw hitbox
+                    /*
+                    var whitePen = new Pen(Color.White, 1);
+                    var hitboxTop = new Rectangle(23, -_dino.CurrentHeight + 19, 4, 5);
+                    var hitboxBottom = new Rectangle(20, -_dino.CurrentHeight + 23, 4, 6);
+
+                    graphics.DrawRectangle(whitePen, hitboxTop);
+                    graphics.DrawRectangle(whitePen, hitboxBottom);     
+                    */
 
                     if (CheckCollision(playerHitbox))
                     {

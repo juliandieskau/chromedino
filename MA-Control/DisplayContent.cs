@@ -113,7 +113,9 @@ public class DisplayContent
         // The up key is pressed.
         if (pressedKey == Keys.Up)
         {
-            if (_timeSinceLastJump > 2000)
+            // -> TODO: Abfragen ob auf dem Boden und nicht über Zeit die gesprungen wurde
+            //if (_timeSinceLastJump > 1100)
+            if (positionY <= 0.0)
             {
                 _timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             }
@@ -131,7 +133,7 @@ public class DisplayContent
 
     private double positionY = 0.0;
     private double velocityY = 0.0;
-    private const double gravity = 32.0;
+    private const double gravity = 16.0;
 
     /// <summary>
     /// Draws the jump of the Dino.
@@ -156,12 +158,20 @@ public class DisplayContent
 
         if (_timeSinceLastJump < 200)
         {
-            velocityY = 32.0;
+            velocityY = 20.0;
         }
         if (_timeSinceLastJump > 0)
         {
             positionY += velocityY * (_timeSinceLastJump / 2000.0);
-            velocityY -= gravity * (_timeSinceLastJump / 2000.0);
+            // Gravitation verringern beim Fallen
+            if (velocityY > 0)
+            {
+                velocityY -= gravity * (_timeSinceLastJump / 2000.0);
+            } else
+            {
+                velocityY -= 0.5 * gravity * (_timeSinceLastJump / 2000.0);
+            }
+            
         }
 
         var yValue = (int)positionY;
