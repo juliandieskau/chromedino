@@ -1,0 +1,6 @@
+# IDE
+.vs/
+
+# compiled dateien
+MA-Control/obj/
+MA-Control/bin/
