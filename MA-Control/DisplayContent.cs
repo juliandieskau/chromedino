@@ -127,9 +127,22 @@ public class DisplayContent
         }
         // The space bar is pressed.
         else if (pressedKey == Keys.Space) {
-            
+            // space bar aktivieren wenn game damit gestartet wird
+            if (!Game.gameStarted)
+            {
+                startPressed = true;
+            } 
+            // space bar aktivieren wenn im game over screen
+            else if (IsGameOver()) {
+                startPressed = true;
+            }
         }
     }
+
+    /// <summary>
+    /// Bitte nicht setten, danke
+    /// </summary>
+    public static bool startPressed { get; set; } = false;
 
     #endregion
 

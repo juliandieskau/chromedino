@@ -15,6 +15,8 @@ internal class Game
 
     private readonly Obstacles _obstacles;
 
+    public static bool gameStarted { get; set;  } = false;
+
     #endregion
 
     #region Constructors
@@ -40,11 +42,24 @@ internal class Game
         _log.Info(GetType().Name + "." + MethodBase.GetCurrentMethod());
         while (true)
         {
+            if (!gameStarted)
+            {
+                while (!DisplayContent.startPressed)
+                {
+                    // TODO: Anzeigen: "press spacebar to restart"
+                }
+                DisplayContent.startPressed = false;
+                gameStarted = true;
+            }
             if (DisplayContent.IsGameOver())
             {
                 _obstacles.ReloadBackground();
                 Thread.Sleep(1000);
-
+                while (!DisplayContent.startPressed)
+                {
+                    // TODO: Anzeigen: "press spacebar to restart"
+                }
+                DisplayContent.startPressed = false;
             }
 
             _obstacles.UpdateBackground();
