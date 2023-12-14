@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Collections.Generic;
 
 namespace MA_Control;
 
@@ -13,9 +12,9 @@ internal class Obstacles
 
     private Point[,] _obstacles;
 
-    private const int TRIANGLE_COUNT = 50;
+    private static int TRIANGLE_COUNT = 6;
 
-    #endregion
+    #endregion Fields
 
     #region Constructors
 
@@ -27,7 +26,7 @@ internal class Obstacles
         _obstacles = GetObstacles();
     }
 
-    #endregion
+    #endregion Constructors
 
     #region Public Methods
 
@@ -44,8 +43,6 @@ internal class Obstacles
     /// </summary>
     public void UpdateBackground()
     {
-        // entferne alle Hindernisse aus den in der Grafik gespeicherten,
-        // aber behalte die PunktListe der Hindernisse in dieser Klasse
         DisplayContent.ClearObstacles();
 
         for (var triangle = 0; triangle < TRIANGLE_COUNT; triangle++)
@@ -53,6 +50,11 @@ internal class Obstacles
             _obstacles[triangle, 0] = new Point(_obstacles[triangle, 0].X - 1, 29);
             _obstacles[triangle, 1] = new Point(_obstacles[triangle, 1].X - 1, 29);
             _obstacles[triangle, 2] = new Point(_obstacles[triangle, 2].X - 1, _obstacles[triangle, 2].Y);
+
+            if (_obstacles[0, 1].X <= -1)
+            {
+                ShiftPointArray();
+            }
 
             Point[] newTriangleEdges =
             {
@@ -67,7 +69,31 @@ internal class Obstacles
         DisplayContent.DrawFloor();
     }
 
-    #endregion
+    public void ShiftPointArray()
+    {
+        for (int triangle = 0; triangle < TRIANGLE_COUNT - 1; triangle++)
+        {
+            _obstacles[triangle, 0] = _obstacles[triangle + 1, 0];
+            _obstacles[triangle, 1] = _obstacles[triangle + 1, 1];
+            _obstacles[triangle, 2] = _obstacles[triangle + 1, 2];
+        }
+        var random = new Random();
+        var previousTriangle = _obstacles[TRIANGLE_COUNT - 2, 0].X;
+        previousTriangle += random.Next(39, 59);
+        //var obstacleList = new Point[TRIANGLE_COUNT, 3];
+        var heightOffset = random.Next(0, 5);
+
+        //Create points to define polygon
+        var point1 = new Point(1 + previousTriangle, 29);
+        var point2 = new Point(5 + previousTriangle, 29);
+        var point3 = new Point(3 + previousTriangle, 27 - heightOffset);
+
+        _obstacles[TRIANGLE_COUNT - 1, 0] = point1;
+        _obstacles[TRIANGLE_COUNT - 1, 1] = point2;
+        _obstacles[TRIANGLE_COUNT - 1, 2] = point3;
+    }
+
+    #endregion Public Methods
 
     #region Private Methods
 
@@ -75,10 +101,11 @@ internal class Obstacles
     /// Gets an object with the generated the obstacles.
     /// </summary>
     /// <returns>Object with all obstacles.</returns>
+    ///
     private static Point[,] GetObstacles()
     {
         var random = new Random();
-        var previousTriangle = 0;
+        var previousTriangle = 15;
 
         var obstacleList = new Point[TRIANGLE_COUNT, 3];
 
@@ -102,5 +129,5 @@ internal class Obstacles
         return obstacleList;
     }
 
-    #endregion
+    #endregion Private Methods
 }
