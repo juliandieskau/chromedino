@@ -12,4 +12,5 @@
 	- [ ] Geschwindigkeit der Hindernisse über Zeit schneller?
 	- [X] Sprunghöhe nicht linear sondern mit gravity und acceleration
 	- [ ] neu generierte Map weiter hinten starten
-	- [ ] wenn man während collision springt ist game over false, sobald man oberhalb des obstacles ist
+	- [ ] wenn man während collision springt ist game over false, sobald man oberhalb des obstacles ist 
+		  und spiel kann sogar weiter gehen, wenn man trotzdem darüber kommt
