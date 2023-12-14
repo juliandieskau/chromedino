@@ -12,6 +12,8 @@ internal class Obstacles
 
     private Point[,] _obstacles;
 
+    private const int TRIANGLE_COUNT = 10;
+
     #endregion
 
     #region Constructors
@@ -43,7 +45,7 @@ internal class Obstacles
     {
         DisplayContent.ClearObstacles();
 
-        for (var triangle = 0; triangle < 50; triangle++)
+        for (var triangle = 0; triangle < TRIANGLE_COUNT; triangle++)
         {
             _obstacles[triangle, 0] = new Point(_obstacles[triangle, 0].X - 1, 29);
             _obstacles[triangle, 1] = new Point(_obstacles[triangle, 1].X - 1, 29);
@@ -75,9 +77,9 @@ internal class Obstacles
         var random = new Random();
         var previousTriangle = 0;
 
-        var obstacleList = new Point[50, 3];
+        var obstacleList = new Point[TRIANGLE_COUNT, 3];
 
-        for (var triangle = 0; triangle < 50; triangle++)
+        for (var triangle = 0; triangle < TRIANGLE_COUNT; triangle++)
         {
             // Generate random offset
             var heightOffset = random.Next(0, 5);

@@ -1,4 +1,5 @@
 ﻿using log4net;
+using System;
 using System.Reflection;
 using System.Threading;
 
@@ -16,6 +17,8 @@ internal class Game
     private readonly Obstacles _obstacles;
 
     public static bool gameStarted { get; set;  } = false;
+
+    public static long startTime { get; set; }
 
     #endregion
 
@@ -40,6 +43,7 @@ internal class Game
     public void Start()
     {
         _log.Info(GetType().Name + "." + MethodBase.GetCurrentMethod());
+        startTime = DateTimeOffset.Now.ToUnixTimeSeconds();
         while (true)
         {
             if (!gameStarted)
@@ -57,7 +61,9 @@ internal class Game
                 while (!DisplayContent.startPressed)
                 {
                     // TODO: Anzeigen: "press spacebar to restart"
+                    startTime = DateTimeOffset.Now.ToUnixTimeSeconds();
                 }
+                
                 DisplayContent.startPressed = false;
             }
 
