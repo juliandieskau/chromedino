@@ -188,7 +188,6 @@ public class DisplayContent
             {
                 velocityY -= 0.5 * gravity * (_timeSinceLastJump / 2000.0);
             }
-            
         }
 
         var yValue = (int)positionY;

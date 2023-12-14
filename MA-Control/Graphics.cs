@@ -208,7 +208,7 @@ public class Graphics
                     // Draw dinosaur.
                     if (DisplayContent.IsGameOver())
                     {
-                        dinoColor = Color.Red;
+                        dinoColor = Color.DarkRed;
                     } 
                     else
                     {
@@ -226,14 +226,14 @@ public class Graphics
                     };
 
                     // Draw hitbox
-                    /*
+                    
                     var whitePen = new Pen(Color.White, 1);
                     var hitboxTop = new Rectangle(23, -_dino.CurrentHeight + 19, 4, 5);
                     var hitboxBottom = new Rectangle(20, -_dino.CurrentHeight + 23, 4, 6);
 
                     graphics.DrawRectangle(whitePen, hitboxTop);
                     graphics.DrawRectangle(whitePen, hitboxBottom);     
-                    */
+                    
 
                     if (CheckCollision(playerHitbox))
                     {

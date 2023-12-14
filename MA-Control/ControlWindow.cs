@@ -37,7 +37,7 @@ public partial class ControlWindow : Form
 
         // Thread for the Jump.
         var thread = new Thread(() => DisplayContent.BackgroundWorker(_displayContent));
-        thread.Priority = ThreadPriority.Lowest ;
+        thread.Priority = ThreadPriority.Lowest;
         thread.Start();
 
         // Thread for the obstacles.
