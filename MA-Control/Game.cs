@@ -20,6 +20,8 @@ internal class Game
 
     public static long startTime { get; set; }
 
+    public static long highscore { get; set; }
+
     #endregion
 
     #region Constructors
@@ -43,7 +45,8 @@ internal class Game
     public void Start()
     {
         _log.Info(GetType().Name + "." + MethodBase.GetCurrentMethod());
-        startTime = DateTimeOffset.Now.ToUnixTimeSeconds();
+        // highscore von JSON laden
+        highscore = 0;
         while (true)
         {
             if (!gameStarted)
@@ -51,6 +54,7 @@ internal class Game
                 while (!DisplayContent.startPressed)
                 {
                     // TODO: Anzeigen: "press spacebar to restart"
+                    startTime = DateTimeOffset.Now.ToUnixTimeSeconds();
                 }
                 DisplayContent.startPressed = false;
                 gameStarted = true;
@@ -58,6 +62,12 @@ internal class Game
             if (DisplayContent.IsGameOver())
             {
                 _obstacles.ReloadBackground();
+                if (Graphics.score > highscore)
+                {
+                    // TODO: Anzeigen: "new highscore!"
+                    highscore = Graphics.score;
+                    // TODO: highscore speichern in JSON
+                }
                 while (!DisplayContent.startPressed)
                 {
                     // TODO: Anzeigen: "press spacebar to restart"

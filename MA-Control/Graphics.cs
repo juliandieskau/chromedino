@@ -1,6 +1,7 @@
 ﻿using Library;
 using log4net;
 using MA_Control.Models;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Concurrent;
 using System.Drawing;
@@ -33,6 +34,8 @@ public class Graphics
     public static bool GameOver { get; set; }
 
     private static Color dinoColor {  get; set; }
+
+    public static long score { get; set; }
 
     #endregion
 
@@ -249,8 +252,29 @@ public class Graphics
                         graphics.DrawString("GAME OVER", font, new SolidBrush(Color.LightGray), 65, 1);
                     }
                     // show score
-                    string score = Convert.ToString(DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime);
-                    graphics.DrawString(score, font, new SolidBrush(Color.LightGray), 1, 1);
+                    score = DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime;
+                    string strScore = Convert.ToString(score);
+                    graphics.DrawString(strScore, font, new SolidBrush(Color.LightGray), 1, 1);
+
+                    // show crown for highscore 
+                    Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\crown.png");
+                    Point ulCorner = new Point(179, 3);
+                    graphics.DrawImage(image, ulCorner);
+
+                    // show highscore
+                    long highscore = Game.highscore;
+
+                    // zahl um 7 nach links verschieben für jede digit
+                    int textPositionX = 175;
+                    int shiftTextBy = 5;
+                    int length = highscore.ToString().Length;
+                    textPositionX = textPositionX - shiftTextBy * length;
+
+                    // draw highscore
+                    string strHighscore = Convert.ToString(highscore);
+                    graphics.DrawString(strHighscore, font, new SolidBrush(Color.LightGray), textPositionX, 1);
+
+                    // TODO: show status message
 
                     // Send to display
                     controlService.SendBitmap(bitmap);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace MA_Control;
 
@@ -12,7 +13,7 @@ internal class Obstacles
 
     private Point[,] _obstacles;
 
-    private const int TRIANGLE_COUNT = 10;
+    private const int TRIANGLE_COUNT = 50;
 
     #endregion
 
@@ -43,6 +44,8 @@ internal class Obstacles
     /// </summary>
     public void UpdateBackground()
     {
+        // entferne alle Hindernisse aus den in der Grafik gespeicherten,
+        // aber behalte die PunktListe der Hindernisse in dieser Klasse
         DisplayContent.ClearObstacles();
 
         for (var triangle = 0; triangle < TRIANGLE_COUNT; triangle++)

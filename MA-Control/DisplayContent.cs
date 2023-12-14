@@ -137,6 +137,8 @@ public class DisplayContent
                 startPressed = true;
             }
         }
+
+        // TODO: text input a-z,A-Z,0-9 eingeben, wenn in game over screen + score speichern
     }
 
     /// <summary>
