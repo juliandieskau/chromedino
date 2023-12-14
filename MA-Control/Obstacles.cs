@@ -56,14 +56,14 @@ internal class Obstacles
                 ShiftPointArray();
             }
 
+            // TODO: texture benutzen
             Point[] newTriangleEdges =
             {
                 _obstacles[triangle, 0],
                 _obstacles[triangle, 1],
                 _obstacles[triangle, 2]
             };
-
-            DisplayContent.DrawObstacle(newTriangleEdges, new Pen(Color.DarkRed));
+            DisplayContent.DrawObstacle(newTriangleEdges, new Pen(Color.DarkBlue));
         }
 
         DisplayContent.DrawFloor();

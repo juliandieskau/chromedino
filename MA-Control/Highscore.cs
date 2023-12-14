@@ -12,7 +12,7 @@ namespace MA_Control
     {
         #region Fields
 
-        private const string PATH = @"C:\Users\HH-SoSo-2\Desktop\MyFolder\Basics\Aufgaben\Aufgaben\";
+        private const string PATH = @"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\";
         private const string FILE = "Highscore.json";
 
         #endregion

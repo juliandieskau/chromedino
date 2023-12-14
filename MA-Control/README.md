@@ -1,4 +1,8 @@
 ﻿# MA-Control
+## IP-Adresse des PCs:
+192.168.2.69
+24
+192.168.2.1
 
 **Matrix-Control** shows the logic of the program.
 ## TODO
@@ -16,5 +20,8 @@
 		  und spiel kann sogar weiter gehen, wenn man trotzdem darüber kommt
 	- [ ] _timestamp (DisplayContent) updaten sodass es deltaTime entspricht 
 		<-> testen ob man springen kann nach Position nicht Zeit
-	- [ ] highscore in json speichern
+	- [x] highscore in json speichern
 	- [x] hindernisse vorne entfernen und hinten neue einfügen statt konstant 50, die ausgehen
+	- [ ] fliegende hindernisse
+	- [ ] Images als Textur verwenden statt Point/Edge Objekte zu erstellen
+	- [ ] pfade relativ machen

@@ -5,6 +5,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Concurrent;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -92,6 +93,21 @@ public class Graphics
 
     #region Private Methods
 
+    private static Rectangle getObstacleHitbox(DrawableObstacleModel obstacle)
+    {
+        var bottomLeft = new Point((obstacle.Edges[0].X + obstacle.Edges[2].X) / 2, 29);
+        var bottomRight = new Point((obstacle.Edges[1].X + obstacle.Edges[2].X) / 2, 29);
+        var topRight = new Point((obstacle.Edges[1].X + obstacle.Edges[2].X) / 2, obstacle.Edges[2].Y + 1);
+        var topLeft = new Point((obstacle.Edges[0].X + obstacle.Edges[2].X) / 2, obstacle.Edges[2].Y + 1);
+
+        var rectangleX = topLeft.X;
+        var rectangleY = topLeft.Y;
+        var rectangleWidth = topRight.X - topLeft.X;
+        var rectangleHeight = bottomLeft.Y - topLeft.Y;
+
+        return new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
+    }
+
     /// <summary>
     /// Checks if there is a collision.
     /// </summary>
@@ -112,6 +128,7 @@ public class Graphics
                 continue;
             }
 
+            /*
             var bottomLeft = new Point((obstacle.Edges[0].X + obstacle.Edges[2].X) / 2, 29);
             var bottomRight = new Point((obstacle.Edges[1].X + obstacle.Edges[2].X) / 2, 29);
             var topRight = new Point((obstacle.Edges[1].X + obstacle.Edges[2].X) / 2, obstacle.Edges[2].Y + 1);
@@ -120,9 +137,9 @@ public class Graphics
             var rectangleX = topLeft.X;
             var rectangleY = topLeft.Y;
             var rectangleWidth = topRight.X - topLeft.X;
-            var rectangleHeight = bottomLeft.Y - topLeft.Y;
+            var rectangleHeight = bottomLeft.Y - topLeft.Y; */
 
-            var obstacleHitbox = new Rectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
+            var obstacleHitbox = getObstacleHitbox(obstacle);
 
                     if (hitboxTop.IntersectsWith(obstacleHitbox) || hitboxBottom.IntersectsWith(obstacleHitbox))
             {
@@ -207,6 +224,7 @@ public class Graphics
                         if (obstacle != null && obstacle.Edges[1].X <= displayWidth && obstacle.Edges[1].X > -5)
                         {
                             graphics.DrawPolygon(obstacle.Pen, obstacle.Edges);
+                            graphics.FillPolygon(new SolidBrush(Color.Blue), obstacle.Edges);
                         }
                     }
 
@@ -221,6 +239,7 @@ public class Graphics
                     }
                     var dino = GetDino();
                     graphics.DrawPolygon(dino.Pen, dino.Edges);
+                    // graphics.FillPolygon(new SolidBrush(Color.DarkOliveGreen), dino.Edges);
 
                     Point[] playerHitbox =
                     {
@@ -239,25 +258,28 @@ public class Graphics
                     graphics.DrawRectangle(whitePen, hitboxTop);
                     graphics.DrawRectangle(whitePen, hitboxBottom);     
                     */
-                    
-                    var font = new Font("Arial", 7);
+
+                    // try toDraw Obstacle Hitbox
+                    // graphics.DrawRectangle(new Pen(Color.White), getObstacleHitbox(_obstacles.First<DrawableObstacleModel>()));
+
+                    var font = new Font("Arial", 8);
                     if (CheckCollision(playerHitbox))
                     {
                         GameOver = true;
 
-                        graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, displayWidth, displayHeight);
+                        // graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, displayWidth, displayHeight);
 
                         // Show 'Game Over'
                         
-                        graphics.DrawString("GAME OVER", font, new SolidBrush(Color.LightGray), 65, 1);
+                        graphics.DrawString("GAME OVER", font, new SolidBrush(Color.Red), 65, -1);
                     }
                     // show score
                     score = DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime;
                     string strScore = Convert.ToString(score);
-                    graphics.DrawString(strScore, font, new SolidBrush(Color.LightGray), 1, 1);
+                    graphics.DrawString(strScore, font, new SolidBrush(Color.Blue), 1, -1);
 
                     // show crown for highscore 
-                    Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\crown.png");
+                    Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\MA-Control\Models\textures\gui\crown.png");
                     Point ulCorner = new Point(179, 3);
                     graphics.DrawImage(image, ulCorner);
 
@@ -266,13 +288,13 @@ public class Graphics
 
                     // zahl um 7 nach links verschieben für jede digit
                     int textPositionX = 175;
-                    int shiftTextBy = 5;
+                    int shiftTextBy = 6;
                     int length = highscore.ToString().Length;
                     textPositionX = textPositionX - shiftTextBy * length;
 
                     // draw highscore
                     string strHighscore = Convert.ToString(highscore);
-                    graphics.DrawString(strHighscore, font, new SolidBrush(Color.LightGray), textPositionX, 1);
+                    graphics.DrawString(strHighscore, font, new SolidBrush(Color.Blue), textPositionX, -1);
 
                     // TODO: show status message
 

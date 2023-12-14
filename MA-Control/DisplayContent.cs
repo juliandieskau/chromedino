@@ -43,8 +43,8 @@ public class DisplayContent
     {
         while (true)
         {
-            Thread.Sleep(100);
             displayContent.DrawJump();
+            Thread.Sleep(100);
             Console.WriteLine("I'm still alive");
         }
     }
@@ -62,7 +62,7 @@ public class DisplayContent
     /// </summary>
     public static void DrawFloor()
     {
-        var darkRedPen = new Pen(Color.DarkRed, 2);
+        var darkRedPen = new Pen(Color.DarkBlue, 2);
         Point[] rectangleEdges =
         {
             new(0, 32),

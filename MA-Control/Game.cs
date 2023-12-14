@@ -92,7 +92,7 @@ internal class Game
             }
 
             _obstacles.UpdateBackground();
-            Thread.Sleep(50);
+            Thread.Sleep(35);
         }
     }
 
