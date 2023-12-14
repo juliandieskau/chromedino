@@ -46,7 +46,16 @@ internal class Game
     {
         _log.Info(GetType().Name + "." + MethodBase.GetCurrentMethod());
         // highscore von JSON laden
-        highscore = 0;
+        try
+        {
+            Highscore.File file = Highscore.readHighscoreFromJSON();
+            highscore = file.Highscore;
+        } catch (Exception ex)
+        {
+            highscore = 0;
+        }
+        
+
         while (true)
         {
             if (!gameStarted)
@@ -64,9 +73,14 @@ internal class Game
                 _obstacles.ReloadBackground();
                 if (Graphics.score > highscore)
                 {
-                    // TODO: Anzeigen: "new highscore!"
                     highscore = Graphics.score;
-                    // TODO: highscore speichern in JSON
+
+                    // highscore speichern in JSON
+                    Highscore.File file = new Highscore.File
+                    {
+                        Highscore = highscore
+                    };
+                    bool saved = Highscore.saveToJSON(file);
                 }
                 while (!DisplayContent.startPressed)
                 {
