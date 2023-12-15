@@ -149,9 +149,24 @@ public class DisplayContent
 
         // TODO: text input a-z,A-Z,0-9 eingeben, wenn in game over screen + score speichern
         // Zahl 1-9 als Schwierigkeit drücken, wenn im game over screen/spiel noch nicht gestartet
-        else if (pressedKey >= Keys.D1 && pressedKey <= Keys.D9) 
+        else if (pressedKey >= Keys.D1 && pressedKey <= Keys.D4) 
         {
-
+            if (!Game.gameStarted || IsGameOver())
+            {
+                if (pressedKey == Keys.D1)
+                {
+                    Game.difficulty = Game.Difficulty.EASY;
+                } else if (pressedKey == Keys.D2)
+                {
+                    Game.difficulty = Game.Difficulty.NORMAL;
+                } else if (pressedKey == Keys.D3)
+                {
+                    Game.difficulty = Game.Difficulty.HARD;
+                } else if (pressedKey == Keys.D4)
+                {
+                    Game.difficulty = Game.Difficulty.IMPOSSIBLE;
+                }
+            }
         }
     }
 

@@ -23,14 +23,14 @@ internal class Game
 
     public static long highscore { get; set; }
 
-    public static Difficulty difficulty { get; set; } = Difficulty.NORMAL;
+    public static Difficulty difficulty { get; set; } = Difficulty.IMPOSSIBLE;
 
     public enum Difficulty
     {
-        EASY = 2,
-        NORMAL = 4,
-        HARD = 6,
-        IMPOSSIBLE = 10
+        EASY = 10,
+        NORMAL = 7,
+        HARD = 3,
+        IMPOSSIBLE = 1
     }
 
     #endregion
@@ -123,7 +123,7 @@ internal class Game
         // score ist wert >= 0
         int score = Convert.ToInt32(Graphics.score);
         int startTime = 45;
-        int endTime = 25;
+        int endTime = 20;
         int change = score / difficulty;
         int returnTime = startTime - change;
         if (returnTime <= endTime)
