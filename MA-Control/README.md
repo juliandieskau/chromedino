@@ -16,7 +16,7 @@
 	- [ ] Geschwindigkeit der Hindernisse über Zeit schneller?
 	- [X] Sprunghöhe nicht linear sondern mit gravity und acceleration
 	- [x] neu generierte Map weiter hinten starten
-	- [ ] wenn man während collision springt ist game over false, sobald man oberhalb des obstacles ist 
+	- [x] wenn man während collision springt ist game over false, sobald man oberhalb des obstacles ist 
 		  und spiel kann sogar weiter gehen, wenn man trotzdem darüber kommt
 	- [ ] _timestamp (DisplayContent) updaten sodass es deltaTime entspricht 
 		<-> testen ob man springen kann nach Position nicht Zeit
@@ -24,4 +24,4 @@
 	- [x] hindernisse vorne entfernen und hinten neue einfügen statt konstant 50, die ausgehen
 	- [ ] fliegende hindernisse
 	- [ ] Images als Textur verwenden statt Point/Edge Objekte zu erstellen
-	- [ ] pfade relativ machen
+	- [x] pfade relativ machen

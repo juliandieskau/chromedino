@@ -12,8 +12,8 @@ namespace MA_Control
     {
         #region Fields
 
-        private const string PATH = @"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\";
-        private const string FILE = "Highscore.json";
+        private static string PATH = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName).Parent.FullName;
+        private static string FILE = "\\MA-Control\\Highscore.json";
 
         #endregion
 
