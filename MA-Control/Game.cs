@@ -1,5 +1,6 @@
 ﻿using log4net;
 using System;
+using System.Drawing.Drawing2D;
 using System.Reflection;
 using System.Threading;
 
@@ -92,8 +93,35 @@ internal class Game
             }
 
             _obstacles.UpdateBackground();
-            Thread.Sleep(35);
+            // über Zeit schnelleres updaten
+            // schwierigkeit bei 5 ist okay, 1 sehr hart
+            int difficulty = 5;
+            Thread.Sleep(getFrameTime(difficulty));
         }
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Berechne die Zeit in Millisekunden pro Frame für die Hindernisse
+    /// Abhängig von wie viel Zeit bereits vergangen ist.
+    /// </summary>
+    /// <returns>int zwischen 25 und 45</returns>
+    private static int getFrameTime(int difficulty)
+    {
+        // score ist wert >= 0
+        int score = Convert.ToInt32(Graphics.score);
+        int startTime = 45;
+        int endTime = 25;
+        int change = score / difficulty;
+        int returnTime = startTime - change;
+        if (returnTime <= endTime)
+        {
+            return endTime;
+        }
+        return returnTime;
     }
 
     #endregion
