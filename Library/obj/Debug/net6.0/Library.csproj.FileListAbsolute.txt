@@ -23,3 +23,4 @@ C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\Library\obj\Debug\net6
 C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\Library\obj\Debug\net6.0\refint\Library.dll
 C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\Library\obj\Debug\net6.0\Library.pdb
 C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\Library\obj\Debug\net6.0\ref\Library.dll
+C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\Library\obj\Debug\net6.0\Library.sourcelink.json

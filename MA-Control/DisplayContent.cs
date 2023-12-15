@@ -112,14 +112,19 @@ public class DisplayContent
         // The up key is pressed.
         if (pressedKey == Keys.Up)
         {
-
-            // -> TODO: Abfragen ob auf dem Boden und nicht über Zeit die gesprungen wurde
-            //if (_timeSinceLastJump > 1100)
-            if (positionY <= 0.0)
+            // TODO man kann noch springen wenn man am spielen im hindernis landet und dann springen drückt
+            // wenn man im game over screen ist ist springen nicht möglich
+            if (!IsGameOver())
             {
-                Console.Beep();
-                _timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                // -> TODO: Abfragen ob auf dem Boden und nicht über Zeit die gesprungen wurde
+                //if (_timeSinceLastJump > 1100)
+                if (positionY <= 0.0)
+                {
+                    Console.Beep();
+                    _timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                }
             }
+            
         }
         // The down key is pressed.
         else if (pressedKey == Keys.Down)

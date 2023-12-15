@@ -32,7 +32,7 @@ public class Graphics
     /// <summary>
     /// Specifies whether the game is over (true) or not (false).
     /// </summary>
-    public static bool GameOver { get; set; }
+    public static bool GameOver { get; set; } = false;
 
     private static Color dinoColor {  get; set; }
 
@@ -218,87 +218,95 @@ public class Graphics
             {
                 using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
                 {
-
-                    // Draw obstacles.
-                    foreach (var obstacle in _obstacles)
+                    // check if left starting screen
+                    if (Game.gameStarted)
                     {
-                        if (obstacle != null && obstacle.Edges[1].X <= displayWidth && obstacle.Edges[1].X > -5)
+                        // Draw obstacles.
+                        foreach (var obstacle in _obstacles)
                         {
-                            graphics.DrawPolygon(obstacle.Pen, obstacle.Edges);
-                            graphics.FillPolygon(new SolidBrush(Color.Blue), obstacle.Edges);
+                            if (obstacle != null && obstacle.Edges[1].X <= displayWidth && obstacle.Edges[1].X > -5)
+                            {
+                                graphics.DrawPolygon(obstacle.Pen, obstacle.Edges);
+                                graphics.FillPolygon(new SolidBrush(Color.Blue), obstacle.Edges);
+                            }
                         }
-                    }
 
-                    // Draw dinosaur.
-                    if (DisplayContent.IsGameOver())
-                    {
-                        dinoColor = Color.DarkRed;
-                    } 
+                        // Draw dinosaur.
+                        if (DisplayContent.IsGameOver())
+                        {
+                            dinoColor = Color.DarkRed;
+                        }
+                        else
+                        {
+                            dinoColor = Color.DarkOliveGreen;
+                        }
+                        var dino = GetDino();
+                        graphics.DrawPolygon(dino.Pen, dino.Edges);
+                        // graphics.FillPolygon(new SolidBrush(Color.DarkOliveGreen), dino.Edges);
+
+                        Point[] playerHitbox =
+                        {
+                                new(22, 29), // bottom left
+                                new(20, 26), // top left
+                                new(25, 26), // top right
+                                new(24, 29) // bottom right
+                            };
+
+                        // Draw hitbox
+                        /*
+                        var whitePen = new Pen(Color.White, 1);
+                        var hitboxTop = new Rectangle(23, -_dino.CurrentHeight + 19, 4, 5);
+                        var hitboxBottom = new Rectangle(20, -_dino.CurrentHeight + 23, 4, 6);
+
+                        graphics.DrawRectangle(whitePen, hitboxTop);
+                        graphics.DrawRectangle(whitePen, hitboxBottom);     
+                        */
+
+                        // try toDraw Obstacle Hitbox
+                        // graphics.DrawRectangle(new Pen(Color.White), getObstacleHitbox(_obstacles.First<DrawableObstacleModel>()));
+
+                        var font = new Font("Arial", 8);
+                        if (CheckCollision(playerHitbox))
+                        {
+                            GameOver = true;
+
+                            // graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, displayWidth, displayHeight);
+
+                            // Show 'Game Over'
+
+                            graphics.DrawString("GAME OVER", font, new SolidBrush(Color.Red), 65, -1);
+                        }
+                        // show score
+                        score = DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime;
+                        string strScore = Convert.ToString(score);
+                        graphics.DrawString(strScore, font, new SolidBrush(Color.Blue), 1, -1);
+
+                        // show crown for highscore 
+                        Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\MA-Control\Models\textures\gui\crown.png");
+                        Point ulCorner = new Point(179, 3);
+                        graphics.DrawImage(image, ulCorner);
+
+                        // show highscore
+                        long highscore = Game.highscore;
+
+                        // zahl um 7 nach links verschieben für jede digit
+                        int textPositionX = 175;
+                        int shiftTextBy = 6;
+                        int length = highscore.ToString().Length;
+                        textPositionX = textPositionX - shiftTextBy * length;
+
+                        // draw highscore
+                        string strHighscore = Convert.ToString(highscore);
+                        graphics.DrawString(strHighscore, font, new SolidBrush(Color.Blue), textPositionX, -1);
+
+                        // TODO: show status message
+                    }
+                    // show title screen 
                     else
                     {
-                        dinoColor = Color.DarkOliveGreen;
+
                     }
-                    var dino = GetDino();
-                    graphics.DrawPolygon(dino.Pen, dino.Edges);
-                    // graphics.FillPolygon(new SolidBrush(Color.DarkOliveGreen), dino.Edges);
-
-                    Point[] playerHitbox =
-                    {
-                        new(22, 29), // bottom left
-                        new(20, 26), // top left
-                        new(25, 26), // top right
-                        new(24, 29) // bottom right
-                    };
-
-                    // Draw hitbox
-                    /*
-                    var whitePen = new Pen(Color.White, 1);
-                    var hitboxTop = new Rectangle(23, -_dino.CurrentHeight + 19, 4, 5);
-                    var hitboxBottom = new Rectangle(20, -_dino.CurrentHeight + 23, 4, 6);
-
-                    graphics.DrawRectangle(whitePen, hitboxTop);
-                    graphics.DrawRectangle(whitePen, hitboxBottom);     
-                    */
-
-                    // try toDraw Obstacle Hitbox
-                    // graphics.DrawRectangle(new Pen(Color.White), getObstacleHitbox(_obstacles.First<DrawableObstacleModel>()));
-
-                    var font = new Font("Arial", 8);
-                    if (CheckCollision(playerHitbox))
-                    {
-                        GameOver = true;
-
-                        // graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, displayWidth, displayHeight);
-
-                        // Show 'Game Over'
-                        
-                        graphics.DrawString("GAME OVER", font, new SolidBrush(Color.Red), 65, -1);
-                    }
-                    // show score
-                    score = DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime;
-                    string strScore = Convert.ToString(score);
-                    graphics.DrawString(strScore, font, new SolidBrush(Color.Blue), 1, -1);
-
-                    // show crown for highscore 
-                    Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\MA-Control\Models\textures\gui\crown.png");
-                    Point ulCorner = new Point(179, 3);
-                    graphics.DrawImage(image, ulCorner);
-
-                    // show highscore
-                    long highscore = Game.highscore;
-
-                    // zahl um 7 nach links verschieben für jede digit
-                    int textPositionX = 175;
-                    int shiftTextBy = 6;
-                    int length = highscore.ToString().Length;
-                    textPositionX = textPositionX - shiftTextBy * length;
-
-                    // draw highscore
-                    string strHighscore = Convert.ToString(highscore);
-                    graphics.DrawString(strHighscore, font, new SolidBrush(Color.Blue), textPositionX, -1);
-
-                    // TODO: show status message
-
+                    
                     // Send to display
                     controlService.SendBitmap(bitmap);
 
