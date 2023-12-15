@@ -7,14 +7,14 @@ Whenever there is an obstacle the Dino has to jump over it, otherwise the game i
 
 ## Controls
 SPACE 		- (re)start game<br>
-ARROW_UP 	- jump
+ARROW_UP 	- jump<br>
 1-4			- change difficulty to EASY, NORMAL, HARD or IMPOSSIBLE
 
 ## Features
 - Score: counting how long you last in seconds
-- Highscore: saving the highest score even after closing the game
 - Endless Mode: never run out of obstacles to jump over
 - Physics: jump up and down with simulated gravity and y-axis acceleration
 - Difficulty: obstacles leave you time to react at first but move faster than before
+- Highscores: saving the highest score for each difficulty even after closing the game
 - Advanced Graphics: dino bleeds when it runs against a wall
 - Graphical Starting Screen

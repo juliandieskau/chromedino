@@ -1,10 +1,11 @@
 ﻿# MA-Control TODO
+**Matrix-Control** shows the logic of the program.
+
 ## IP-Adresse des PCs:
 192.168.2.69
 24
 192.168.2.1
 
-**Matrix-Control** shows the logic of the program.
 ## TODO
 - [x] Das Spiel soll mit der Leer-Taste starten.
 - [x] Nach 'Game Over' soll das Spiel mit der Leer-Taste neu gestartet werden.
@@ -12,7 +13,6 @@
 - [x] Sekundenzähler = score hinzufügen
 - [x] High score hinzufügen
 - [x] Selber **eine** Verbesserung im Programm machen
-<br>
 - [x] Hitboxen sind 15 Pixel hinter dem Angezeigten Obstacle (rechte seite dino bis linke seite obstacle)
 - [X] Sprunghöhe nicht linear sondern mit gravity und acceleration
 - [x] neu generierte Map weiter hinten starten
