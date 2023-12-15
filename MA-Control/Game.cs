@@ -23,6 +23,16 @@ internal class Game
 
     public static long highscore { get; set; }
 
+    public static Difficulty difficulty { get; set; } = Difficulty.NORMAL;
+
+    public enum Difficulty
+    {
+        EASY = 2,
+        NORMAL = 4,
+        HARD = 6,
+        IMPOSSIBLE = 10
+    }
+
     #endregion
 
     #region Constructors
@@ -95,8 +105,7 @@ internal class Game
             _obstacles.UpdateBackground();
             // über Zeit schnelleres updaten
             // schwierigkeit bei 5 ist okay, 1 sehr hart
-            int difficulty = 5;
-            Thread.Sleep(getFrameTime(difficulty));
+            Thread.Sleep(getFrameTime((int) difficulty));
         }
     }
 

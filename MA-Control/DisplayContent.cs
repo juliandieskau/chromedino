@@ -133,7 +133,8 @@ public class DisplayContent
             Console.Write(".");
         }
         // The space bar is pressed.
-        else if (pressedKey == Keys.Space) {
+        else if (pressedKey == Keys.Space) 
+        {
             // space bar aktivieren wenn game damit gestartet wird
             if (!Game.gameStarted)
             {
@@ -147,6 +148,11 @@ public class DisplayContent
         }
 
         // TODO: text input a-z,A-Z,0-9 eingeben, wenn in game over screen + score speichern
+        // Zahl 1-9 als Schwierigkeit drücken, wenn im game over screen/spiel noch nicht gestartet
+        else if (pressedKey >= Keys.D1 && pressedKey <= Keys.D9) 
+        {
+
+        }
     }
 
     /// <summary>

@@ -272,6 +272,7 @@ public class Graphics
                         // graphics.DrawRectangle(new Pen(Color.White), getObstacleHitbox(_obstacles.First<DrawableObstacleModel>()));
 
                         var font = new Font("Arial", 8);
+                        // Kollision zwischen Player und Hindernis überprüfen
                         if (CheckCollision(playerHitbox))
                         {
                             GameOver = true;
@@ -279,8 +280,27 @@ public class Graphics
                             // graphics.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, displayWidth, displayHeight);
 
                             // Show 'Game Over'
+                            //graphics.DrawString("GAME OVER", font, new SolidBrush(Color.Red), 65, -1);
+                        }
 
+                        // Game Over anzeigen
+                        if (DisplayContent.IsGameOver())
+                        {
                             graphics.DrawString("GAME OVER", font, new SolidBrush(Color.Red), 65, -1);
+                            // Schwierigkeit anzeigen
+                            string difficulty = Enum.GetName(typeof(Game.Difficulty), Game.difficulty);
+                            int diffPos = 110;
+                            if (difficulty == "EASY" || difficulty == "HARD")
+                            {
+                                diffPos = 82;
+                            } else if (difficulty == "NORMAL")
+                            {
+                                diffPos = 75;
+                            } else if (difficulty == "IMPOSSIBLE")
+                            {
+                                diffPos = 65;
+                            }
+                            graphics.DrawString(difficulty, font, new SolidBrush(Color.Green), diffPos, 10);
                         }
                         // show score
                         score = DateTimeOffset.Now.ToUnixTimeSeconds() - Game.startTime;
