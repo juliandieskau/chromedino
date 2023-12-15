@@ -36,14 +36,25 @@ namespace MA_Control
 
         public static File readHighscoreFromJSON()
         {
-            string jsonString = System.IO.File.ReadAllText(PATH + FILE);
-            File highscoreFile = JsonSerializer.Deserialize<File>(jsonString)!;
-            return highscoreFile;
+            try
+            {
+                string jsonString = System.IO.File.ReadAllText(PATH + FILE);
+                File highscoreFile = JsonSerializer.Deserialize<File>(jsonString)!;
+                return highscoreFile;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            
         }
 
         public class File
         {
-            public long Highscore { get; set; }
+            public long HighscoreEasy { get; set; }
+            public long HighscoreNormal { get; set; }
+            public long HighscoreHard { get; set; }
+            public long HighscoreImpossible { get; set;}
         }
         #endregion
     }

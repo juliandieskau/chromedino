@@ -8,6 +8,7 @@ Whenever there is an obstacle the Dino has to jump over it, otherwise the game i
 ## Controls
 SPACE 		- (re)start game<br>
 ARROW_UP 	- jump
+1-4			- change difficulty to EASY, NORMAL, HARD or IMPOSSIBLE
 
 ## Features
 - Score: counting how long you last in seconds

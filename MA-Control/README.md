@@ -25,6 +25,7 @@
 	- [x] Schwierigkeit wird angezeigt
 	- [x] Schwierigkeit per tastendruck im game over screen verstellbar
 	- [ ] highscores werden je nach schwierigkeit separat gespeichert
+		ERROR highscore für difficulty wird erst beim nächsten gameover aktualisiert
 	- [ ] _timestamp (DisplayContent) updaten sodass es deltaTime entspricht 
 		<-> testen ob man springen kann nach Position nicht Zeit
 	- [ ] fliegende hindernisse

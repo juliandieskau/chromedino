@@ -40,7 +40,7 @@ internal class Obstacles
 
     /// <summary>
     /// Updates the background by updating the obstacles object and redrawing the obstacles.
-    /// TODO schneller abhängig von score
+    /// schneller abhängig von score
     /// </summary>
     public void UpdateBackground()
     {

@@ -324,10 +324,8 @@ public class Graphics
                         // draw highscore
                         string strHighscore = Convert.ToString(highscore);
                         graphics.DrawString(strHighscore, font, new SolidBrush(Color.Blue), textPositionX, -1);
-
-                        // TODO: show status message
                     }
-                    // show title screen 
+                    // show title screen before game starts
                     else
                     {
                         string titlePath = IMG_PATH + "img\\titleScreen.png";
