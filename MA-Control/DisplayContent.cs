@@ -119,7 +119,6 @@ public class DisplayContent
                 // Abfragen ob auf dem Boden und nicht über Zeit die gesprungen wurde
                 if (positionY <= 0.0)
                 {
-                    Console.Beep();
                     _timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 }
             }
