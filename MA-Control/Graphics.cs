@@ -218,6 +218,7 @@ public class Graphics
             {
                 using (var graphics = System.Drawing.Graphics.FromImage(bitmap))
                 {
+
                     // Draw obstacles.
                     foreach (var obstacle in _obstacles)
                     {

@@ -43,9 +43,8 @@ public class DisplayContent
     {
         while (true)
         {
-            displayContent.DrawJump();
+            displayContent.RefreshPlayer();
             Thread.Sleep(100);
-            Console.WriteLine("I'm still alive");
         }
     }
 
@@ -113,10 +112,12 @@ public class DisplayContent
         // The up key is pressed.
         if (pressedKey == Keys.Up)
         {
+
             // -> TODO: Abfragen ob auf dem Boden und nicht über Zeit die gesprungen wurde
             //if (_timeSinceLastJump > 1100)
             if (positionY <= 0.0)
             {
+                Console.Beep();
                 _timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             }
         }
@@ -157,7 +158,7 @@ public class DisplayContent
     /// <summary>
     /// Draws the jump of the Dino.
     /// </summary>
-    private void DrawJump()
+    private void RefreshPlayer()
     {
         _timeSinceLastJump = DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timestamp;
         /*
