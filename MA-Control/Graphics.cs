@@ -6,6 +6,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -38,6 +39,8 @@ public class Graphics
 
     public static long score { get; set; }
 
+    public static string IMG_PATH { get; set; }
+
     #endregion
 
     #region Constructors
@@ -49,6 +52,9 @@ public class Graphics
     public Graphics(IControlService controlService)
     {
         _log.Info(GetType().Name + "." + MethodBase.GetCurrentMethod());
+
+        IMG_PATH = Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName).Parent.FullName;
+        IMG_PATH += "\\MA-Control\\Models\\";
 
         var refreshThread = new Thread(() => RefreshCycle(controlService));
         refreshThread.Start();
@@ -282,9 +288,9 @@ public class Graphics
                         graphics.DrawString(strScore, font, new SolidBrush(Color.Blue), 1, -1);
 
                         // show crown for highscore 
-                        Image image = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\MA-Control\Models\textures\gui\crown.png");
-                        Point ulCorner = new Point(179, 3);
-                        graphics.DrawImage(image, ulCorner);
+                        Image image = Image.FromFile(IMG_PATH +"\\textures\\gui\\crown.png");
+                        Point urCorner = new Point(179, 3);
+                        graphics.DrawImage(image, urCorner);
 
                         // show highscore
                         long highscore = Game.highscore;
@@ -304,14 +310,17 @@ public class Graphics
                     // show title screen 
                     else
                     {
-
+                        string titlePath = IMG_PATH + "img\\titleScreen.png";
+                        Image titleScreen = Image.FromFile(titlePath);
+                        Point ulCorner = new Point(0, 0);
+                        graphics.DrawImage(titleScreen, ulCorner);
                     }
                     
                     // Send to display
                     controlService.SendBitmap(bitmap);
 
                     // Sleep
-                    Thread.Sleep(1);
+                    Thread.Sleep(20);
                 }
             }
         }

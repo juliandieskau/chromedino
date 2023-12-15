@@ -90,8 +90,9 @@ public class DisplayContent
     {
         if (Graphics.GameOver)
         {
-            // Reset the property.
-            Graphics.GameOver = false;
+            // Reset the property at pressing space bar.
+
+            // Graphics.GameOver = false;
 
             return true;
         }
@@ -141,6 +142,7 @@ public class DisplayContent
             // space bar aktivieren wenn im game over screen
             else if (IsGameOver()) {
                 startPressed = true;
+                Graphics.GameOver = false;
             }
         }
 
@@ -181,7 +183,7 @@ public class DisplayContent
             tempValue = 16 - 32.0 * ((_timeSinceLastJump - 1000) / 2000.0);
         }*/
 
-        if (_timeSinceLastJump < 200)
+        if (_timeSinceLastJump < 200 )
         {
             velocityY = 20.0;
         }
@@ -199,7 +201,7 @@ public class DisplayContent
         }
 
         var yValue = (int)positionY;
-        if (yValue < 0)
+        if (yValue < 0 || IsGameOver())
         {
             positionY = 0.0;
             velocityY = 0.0;
