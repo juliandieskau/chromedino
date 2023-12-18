@@ -144,7 +144,7 @@ public class Graphics
             var rectangleY = topLeft.Y;
             var rectangleWidth = topRight.X - topLeft.X;
             var rectangleHeight = bottomLeft.Y - topLeft.Y; */
-
+            
             var obstacleHitbox = getObstacleHitbox(obstacle);
 
                     if (hitboxTop.IntersectsWith(obstacleHitbox) || hitboxBottom.IntersectsWith(obstacleHitbox))

@@ -163,7 +163,7 @@ internal class Game
         // score ist wert >= 0
         int score = Convert.ToInt32(Graphics.score);
         int startTime = 45;
-        int endTime = 25;
+        int endTime = 20;
         int change = score / difficulty;
         int returnTime = startTime - change;
         if (returnTime <= endTime)

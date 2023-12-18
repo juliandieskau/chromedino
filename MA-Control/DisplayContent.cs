@@ -130,7 +130,7 @@ public class DisplayContent
             Console.Write(".");
         }
         // The space bar is pressed.
-        else if (pressedKey == Keys.Space) 
+        else if (pressedKey == Keys.Space || pressedKey == Keys.Enter) 
         {
             // space bar aktivieren wenn game damit gestartet wird
             if (!Game.gameStarted)
