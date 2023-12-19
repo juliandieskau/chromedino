@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace MA_Control;
 
@@ -26,6 +27,9 @@ internal static class Program
 
         var window = new ControlWindow();
         window.Show();
+        window.Icon = new Icon(SystemIcons.Question, 20, 20);
+        window.BackgroundImage = Image.FromFile(@"C:\Users\HH-SoSo-2\Desktop\MyFolder\MA-Control\MA-Control\MA-Control\Models\background.png");
+        
 
         // Start the GUI
         Application.Run();
