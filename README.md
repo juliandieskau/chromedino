@@ -1,4 +1,7 @@
 # chromedino
+<p align="left">
+  <img src="MA-Control\Models\asciiDino.png" width="400px" alt="ascii art">
+</p>
 
 ## Description
 This solution is a didactical application for C# learning.<br>
