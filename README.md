@@ -1,6 +1,10 @@
 # chromedino
 <img src="MA-Control/Models/asciiDino.PNG" width="400px" alt="ascii art">
 
+## Disclaimer
+The core of the project is not mine and it wasn't worth refactoring for a one-week-project.<br>
+I would have loved if it was MVC tho.
+
 ## Description
 This solution is a didactical application for C# learning.<br>
 It simulates the T-Rex Chrome Dino Game at the scoreboards (LED matrix screens).<br>
